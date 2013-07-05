@@ -1,5 +1,28 @@
 -- ZAPYTANIA DOTYCZACE NAUCZYCIELI
 
+-- stopnie awansu zawodowego nauczycieli (nazwy i symbole)
+
+select awanssto_nazwa, awanssto_id from sio2012.sawanssto;
+
+-- liczba nauczycieli w poszczegolnych stopniach awansu zawodowego
+
+select count(distinct pedag_pesel), awanssto_id  from sio2012.jedn_ped group by awanssto_id
+
+-- stopien awansu zawodowego, ktory posiada najwieksza liczba nauczycieli + liczba nauczycieli posiadajaca ten stopien (jedna kwerenda)
+
+select query1.*
+from (select count(distinct pedag_pesel) as licznik, awanssto_id from sio2012.jedn_ped group by awanssto_id) query1,
+(select max(query2.licznik) as maksimum
+from (select count(distinct pedag_pesel) as licznik, awanssto_id from sio2012.jedn_ped group by awanssto_id) query2) query3
+where query1.licznik=query3.maksimum;
+
+--nazwa stopnia awansu zawodowego, jaki posiada najwieksza liczba nauczycieli
+
+select awanssto_nazwa from sio2012.sawanssto where sawanssto.awanssto_id=(select query1.awanssto_id                                                                                                         from (select count(distinct pedag_pesel) as licznik, awanssto_id from sio2012.jedn_ped group by awanssto_id) query1,                            
+(select max(query2.licznik) as maksimum
+from (select count(distinct pedag_pesel) as licznik, awanssto_id from sio2012.jedn_ped group by awanssto_id) query2) query3
+where query1.licznik=query3.maksimum);
+
 -- kwerendy dzialajace, ale niezbyt piekne...
 -- Widok: pesel nauczyciela + liczba jednostek, w ktorych jest zatrudniony
 
