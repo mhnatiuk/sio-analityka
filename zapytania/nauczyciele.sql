@@ -23,6 +23,12 @@ select awanssto_nazwa from sio2012.sawanssto where sawanssto.awanssto_id=(select
 from (select count(distinct pedag_pesel) as licznik, awanssto_id from sio2012.jedn_ped group by awanssto_id) query2) query3
 where query1.licznik=query3.maksimum);
 
+-- w ilu srednio placowkach zatrudnieni byli nauczyciele
+select avg(liczba_plac) from (select pedag_pesel, count(jedn_id) as liczba_plac from sio2012.jedn_ped group by jedn_ped.pedag_pesel) pomocnicza;
+
+--srednia liczba nauczycieli w placowkach
+select avg(liczba_naucz) from (select jedn_id, count(pedag_pesel) as liczba_naucz from sio2012.jedn_ped group by jedn_id) pomocnicza;
+
 -- kwerendy dzialajace, ale niezbyt piekne...
 -- Widok: pesel nauczyciela + liczba jednostek, w ktorych jest zatrudniony
 
