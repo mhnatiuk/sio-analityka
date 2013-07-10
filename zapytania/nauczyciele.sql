@@ -29,6 +29,9 @@ select avg(liczba_plac) from (select pedag_pesel, count(jedn_id) as liczba_plac 
 --srednia liczba nauczycieli w placowkach
 select avg(liczba_naucz) from (select jedn_id, count(pedag_pesel) as liczba_naucz from sio2012.jedn_ped group by jedn_id) pomocnicza;
 
+--liczba nauczycieli w poszczegolnych typach placowek
+select typjedn_id, count(pedag_pesel) from sio2012.jedn, sio2012.jedn_ped where jedn_ped.jedn_id=jedn.jedn_id group by typjedn_id;
+
 -- kwerendy dzialajace, ale niezbyt piekne...
 -- Widok: pesel nauczyciela + liczba jednostek, w ktorych jest zatrudniony
 

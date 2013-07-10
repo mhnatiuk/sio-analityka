@@ -34,3 +34,15 @@ select jedn_id from uczniowie1 where prok>brok;
 
 select count(jedn_id) from uczniowie1 where prok>brok;
 
+--liczba uczniow z obwodu uczacych sie w jednostkach
+select jedn_id, jednobszk_uczog from sio2012.jednobszk where obszk_id='001';
+
+--liczba uczniow z obwodu uczacych sie w jednostkach z Warszawy
+select jedn.jedn_id, jednobszk_uczog from sio2012.jednobszk, sio2012.jedn where obszk_id='001' and jedn.jedn_id=jednobszk.jedn_id and jedn.miejscow_id=(select miejscow_id from sio2012.smiejscow where miejscow_nazwa='Warszawa');
+
+--liczba uczniow z obwodu uczacych sie szkolach podstawowych w Warszawie
+select jedn.jedn_id, jednobszk_uczog from sio2012.jednobszk, sio2012.jedn where obszk_id='001' and jedn.jedn_id=jednobszk.jedn_id and jedn.miejscow_id=(select miejscow_id from sio2012.smiejscow where miejscow_nazwa='Warszawa') and jedn.typjedn_id=(select typjedn_id from sio2012.stypjedn where typjedn_nazwa~'Szkoła podstawowa');
+
+--liczba uczniow w podstawowkach warszawskich, ktorych szkoly realizuja obowiazek szkolny "inne szkoly"
+select jedn.jedn_id, jednobszk_uczog from sio2012.jednobszk, sio2012.jedn where obszk_id='002' and jedn.jedn_id=jednobszk.jedn_id and jedn.miejscow_id=(select miejscow_id from sio2012.smiejscow where miejscow_nazwa='Warszawa') and jedn.typjedn_id=(select typjedn_id from sio2012.stypjedn where typjedn_nazwa~'Szkoła podstawowa');
+
