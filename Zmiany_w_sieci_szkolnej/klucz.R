@@ -20,8 +20,8 @@ template_query07_09 <- paste(scan(file="template_query07_09.sql",what="character
 connect_bazek_sio <-
     function() {
         return( dbConnect(dbDriver('PostgreSQL'),
-                          user ="mhnatiuk",
-                          password = "pUshP1N$",
+                          user ="###",
+                          password = "###",
                           host = 'bazek.ibe.edu.pl',
                           dbname = 'sio') )
     }
