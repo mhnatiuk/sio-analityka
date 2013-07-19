@@ -36,8 +36,7 @@ gq <-
     }
 
 
-#dbConnect("PostgreSQL",user="mhnatiuk",password="pUshP1N$", host="bazek.ibe.edu.pl")
-#dbGetQuery(con,query)
+
 
 data <- list()
 #years = c("2008")
