@@ -1,4 +1,4 @@
-
+﻿## komentarz
 kish.grid <- function(id,levels,units, number=1){
     
     if(!length(id) | !length(levels) | !length(units) | !length(number)){
