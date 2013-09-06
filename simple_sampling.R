@@ -58,9 +58,7 @@ simple.random <- function(data, n, reserve=2) {
     # reserve - liczba prob rezerwowych
     # zwraca: listę z ramkami danych ([[1]] -podstawowa) z proba+ dodatkowa zmienna wskazujaca probe (A- podstawowa (B... N - rezerwowe))
     
-    if(!length(id) | !length(levels) | !length(units)){
-        stop("One of the arguments has length of 0")
-    }
+    
     if(reserve < 0){
         stop("Reserve must be >= 0")
     }
